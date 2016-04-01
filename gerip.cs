@@ -32,7 +32,7 @@ class Gerip
             ie1.Link(Find.ByText(day.ToString())).Click();
             Thread.Sleep(1000);
             var f = ie1.Frame(Find.ByName("prestazioni"));
-            var t = f.Tables[0].Tables[0];
+			var t = f.Table(Find.ById("tabellaPrestazioniSAVFR"));
             foreach(var r in t.TableRows)
             {
                 if(r.TableCells.Count >= 7)
