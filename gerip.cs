@@ -22,6 +22,8 @@ class Gerip
         var day1 = Int32.Parse(Console.ReadLine());
         Console.Write("End=");
         var day2 = Int32.Parse(Console.ReadLine());
+        Console.Write("Banca Ore? [n]");
+        var bo = Console.ReadLine().ToUpper() == "Y";
 
         Console.WriteLine("{0} - {1} of {2}", day1, day2, fom.ToString("MMM yyyy"));
 
@@ -41,8 +43,10 @@ class Gerip
                         var fine = r.TableCells[6].Text.Trim();
 
                         var date = new DateTime(fom.Year, fom.Month, day);
-                        ie2.TextField(Find.ByName("cmbCodCausale")).Value = "001";       // straordinari
-                        // ie2.TextField(Find.ByName("cmbCodCausale")).Value = "008";        // banca ore
+                        if(bo)
+                            ie2.TextField(Find.ByName("cmbCodCausale")).Value = "008";        // banca ore
+                        else
+                            ie2.TextField(Find.ByName("cmbCodCausale")).Value = "001";       // straordinari
                         ie2.TextField(Find.ByName("datai")).Value = date.ToString("dd/MM/yyyy");
                         ie2.TextField(Find.ByName("dataf")).Value = date.ToString("dd/MM/yyyy");
                         var iXX = inizio.Split(':');
